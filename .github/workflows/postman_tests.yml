@@ -1,50 +1,52 @@
-# https://github.com/jorlugaqui/ahm/tree/master
-name: CI - Integration Test
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+name: Test-Build
 on:
-  workflow_dispatch:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    branches:
+      - master
 jobs:
-  build:
+  test-api:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
-        python-version: [3.9]
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Git checkout
-      uses: actions/checkout@v2
-
-    - name: Install Node JS ${{ matrix.node-version }}
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+      
+    # INstall Node on the runner
+    - name: Install Node
       uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+      with: 
+        node-version: '12.x'
 
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: '3.9'
 
-    - name: Install Python dependencies
+    - name: Run the API
       run: |
-        python -m pip install --upgrade pip
-        if [ -f backend/requirements.txt ]; then pip install -r backend/requirements.txt; fi
-
-    - name: Install Newman dependency
-      run: npm install -g newman
-
-    - name: Run the API and Postman's tests
-      run: |
-        cd backend && uvicorn app.main:app --reload --port 8080
+        cd backend
+        pip install -r requirements.txt
+        uvicorn app.main:app --reload --port 8080
         sleep 2
-        cd tests/postman/
-        newman run HackWestern.postman_collection.json
+    
+    # Install the newman command line utility and also install the html extra reporter
+    - name: Install newman
+      run: |
+       npm install -g newman
+       npm install -g newman-reporter-htmlextra
+
+    # Make directory to upload the test results
+    - name: Make Directory for results
+      run: mkdir -p testResults
+
+
+    # Run the POSTMAN collection
+    - name: Run POSTMAN collection
+      run: |
+       newman run ./tests/postman/HackWestern.postman_collection.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
+
+    # Upload the contents of Test Results directory to workspace
+    - name: Output the run Details
+      uses: actions/upload-artifact@v2
+      with: 
+       name: RunReports
+       path: testResults
