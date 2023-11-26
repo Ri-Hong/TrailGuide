@@ -48,8 +48,8 @@ name: Deploy to Cloud Run from Source
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ "main" ]
+  # push:
+  #   branches: [ "main" ]
 
 env:
   PROJECT_ID: hack-western-10-406300 # TODO: update Google Cloud project id
