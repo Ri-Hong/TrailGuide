@@ -11,27 +11,31 @@ const Map = () => {
 
   return (
     <View style={styles.container}>
-      <Text>hihiiwasdfari</Text>
+      <View style={styles.titleContainer}>
+        <Text style={styles.subtitle}>Plan Your Trip</Text>
+      </View>
       <MapView
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
         style={styles.map}
-        // region={{
-        //   latitude: 37.78825,
-        //   longitude: -122.4324,
-        //   latitudeDelta: 0.015,
-        //   longitudeDelta: 0.0121,
-        // }}
+        region={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.015,
+          longitudeDelta: 0.0121,
+        }}
       ></MapView>
       {/* <Marker
                 coordinate={{ latitude: 13.406, longitude: 123.3753 }}
                 title="testt"
                 description="RTeerster"
             ></Marker> */}
-      <Link href="/preferences/preferences" style={styles.button}>
-        <Pressable>
-          <Text style={styles.next}>Next</Text>
-        </Pressable>
-      </Link>
+      <View style={styles.btnContainer}>
+        <Link href="/preferences/preferences" style={styles.button}>
+          <Pressable>
+            <Text style={styles.next}>Next</Text>
+          </Pressable>
+        </Link>
+      </View>
     </View>
   );
 };

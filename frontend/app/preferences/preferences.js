@@ -6,17 +6,21 @@ import { Dropdown } from "react-native-element-dropdown";
 import styles from "./preferences.style.js";
 
 const Preferences = () => {
-  const router = useRouter();
+  //const router = useRouter();
   const [isEnabled, setIsEnabled] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [value, setValue] = useState(null);
+  const [isFocus, setIsFocus] = useState(false);
 
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const toggleSwitch = () => {
+    setIsEnabled((previousState) => !previousState);
+    console.log(isEnabled);
+  } 
   const times = [
     { label: "10 minutes", value: 10 },
-    { label: "15 minutes", value: 10 },
-    { label: "20 minutes", value: 10 },
-    { label: "25 minutes", value: 10 },
-    { label: "30 minutes", value: 10 },
+    { label: "15 minutes", value: 15 },
+    { label: "20 minutes", value: 20 },
+    { label: "25 minutes", value: 25 },
+    { label: "30 minutes", value: 30 },
   ];
 
   return (
@@ -35,8 +39,20 @@ const Preferences = () => {
       <Pressable style={styles.searchContainer}>
         <Text style={styles.checkin}>Check-in Interval</Text>
         <Dropdown
-          style={styles.searchInput}
+          style={[styles.dropdown, isFocus]}
           data={times}
+          labelField="label"
+          valueField="value"
+          searchField=""
+          searchPlaceholder="Search..."
+          value={value}
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setIsFocus(false)}
+          onChange={(item) => {
+            setValue(item.value);
+            setIsFocus(false);
+          }}
+          placeholder={!isFocus ? "Select item" : "..."}
         />
       </Pressable>
 

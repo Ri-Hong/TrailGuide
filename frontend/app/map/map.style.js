@@ -5,13 +5,28 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#bc6a46",
-    alignItems: "flex-end",
+    //alignItems: "flex-end",
     justifyContent: "center",
   },
+  titleContainer: {
+    alignItems: "center",
+  },
+
   map: {
     marginTop: 30,
     width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height - 100,
+    height: Dimensions.get("window").height - 200,
+  },
+  subtitle: {
+    font: FONT.bold,
+    fontWeight: "bold",
+    fontSize: 40,
+    color: "#55433b",
+    marginTop: 50,
+    alignItems: "center",
+  },
+  btnContainer: {
+    alignItems: "flex-end",
   },
   button: {
     marginRight: 20,

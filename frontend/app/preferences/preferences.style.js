@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     marginTop: 100,
     font: FONT.bold,
     fontSize: 60,
+    color: "#3a2311",
   },
 
   optionBtn: {
@@ -25,6 +26,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginRight: 40,
     marginTop: 10,
+    color: "#3a2311",
   },
 
   container: {
@@ -71,18 +73,20 @@ const styles = StyleSheet.create({
     fontFamily: FONT.regular,
     fontSize: 20,
     width: "100%",
+    color: "#3a2311",
     //height: "10%",
-    paddingHorizontal: SIZES.medium,
+    paddingHorizontal: SIZES.small,
   },
 
-  searchInput: {
+  dropdown: {
     fontFamily: FONT.regular,
     fontSize: 15,
-    marginTop: 10,
+    marginTop: 20,
     width: "100%",
     backgroundColor: "#eeecda",
     //height: "0%",
     paddingHorizontal: SIZES.medium,
+    borderRadius: 10,
   },
 
   button: {
