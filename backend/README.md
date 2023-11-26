@@ -109,3 +109,6 @@ source venv/bin/activate
 ```bash
 uvicorn app.main:app --reload  
 ```
+### References
+- https://open.canada.ca/data/en/organization/pc?res_type=api
+- https://github.com/open-meteo/open-meteo
