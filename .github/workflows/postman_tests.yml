@@ -6,9 +6,9 @@ name: CI - Integration Test
 on:
   workflow_dispatch:
   push:
-    branches: [ master ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ master ]
+    branches: [ "main" ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -44,7 +44,7 @@ jobs:
 
     - name: Run the API and Postman's tests
       run: |
-        cd Backend && uvicorn app.main:app --reload --port 8080
+        cd backend && uvicorn app.main:app --reload --port 8080
         sleep 2
         cd tests/postman/ && ./node_modules/newman/bin/newman.js run HackWestern.postman_collection.json
         kill -9 `lsof -i:5000 -t`
