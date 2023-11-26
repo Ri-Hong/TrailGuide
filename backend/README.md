@@ -107,7 +107,7 @@ pip freeze > requirements.txt
 source venv/bin/activate
 ```
 ```bash
-uvicorn app.main:app --reload  
+uvicorn app.main:app --reload --port 8080  
 ```
 ### References
 - https://open.canada.ca/data/en/organization/pc?res_type=api
