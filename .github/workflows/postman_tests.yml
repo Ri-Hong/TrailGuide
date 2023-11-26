@@ -46,5 +46,5 @@ jobs:
       run: |
         cd backend && uvicorn app.main:app --reload --port 8080
         sleep 2
-        cd tests/postman/ && newman run HackWestern.postman_collection.json
-        kill -9 `lsof -i:8080 -t`
+        cd tests/postman/
+        newman run HackWestern.postman_collection.json
