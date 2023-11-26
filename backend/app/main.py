@@ -7,3 +7,7 @@ app = FastAPI(description="API for TrailGuide", version="1.0")
 
 # Including API version 1
 app.include_router(v1_router, prefix="/v1")
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
