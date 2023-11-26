@@ -21,6 +21,12 @@ jobs:
           python-version: '3.x'
           # Optional - x64 or x86 architecture, defaults to x64
           architecture: 'x64'
+      - name: Install Node JS ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.x'
+      - name: Install newman
+        run: npm install -g newman
       # You can test your matrix by printing the current Python version
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
@@ -29,9 +35,8 @@ jobs:
           cd backend
           pip install -r requirements.txt --upgrade
           pip install setuptools wheel
-          uvicorn app.main:app --reload --port 8080
-          sleep 3
-          cd ..
-      - uses: matt-ball/newman-action@master
-        with:
-          collection: tests/postman/HackWestern.postman_collection.json
+          uvicorn app.main:app --reload --port 8080 && sleep 3 && newman run ../tests/postman/HackWestern.postman_collection.json && kill -9 `lsof -i:8080 -t
+      # cd ..
+      # - uses: matt-ball/newman-action@master
+      #   with:
+      #     collection: tests/postman/HackWestern.postman_collection.json
