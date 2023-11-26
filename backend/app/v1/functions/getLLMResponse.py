@@ -7,7 +7,7 @@ from langchain.prompts import PromptTemplate
 
 dotenv.load_dotenv()
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
+# current_dir = os.path.dirname(os.path.abspath(__file__))
 # Make sure the path to the key file is correct
 # key_path = os.path.join(current_dir, "../../../GACKey.json")
 
