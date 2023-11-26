@@ -40,14 +40,11 @@ jobs:
         if [ -f backend/requirements.txt ]; then pip install -r backend/requirements.txt; fi
 
     - name: Install Newman dependency
-      run: npm install --prefix tests/postman/
+      run: npm install -g newman
 
     - name: Run the API and Postman's tests
       run: |
         cd backend && uvicorn app.main:app --reload --port 8080
         sleep 2
-        cd tests/postman/ && ./node_modules/newman/bin/newman.js run HackWestern.postman_collection.json
-        kill -9 `lsof -i:5000 -t`
-      env:
-        API_HOST: 0.0.0.0
-        CI: true
+        cd tests/postman/ && newman run HackWestern.postman_collection.json
+        kill -9 `lsof -i:8080 -t`
