@@ -5,6 +5,7 @@ import { COLORS, FONT, SIZES } from "../../constants";
 const styles = StyleSheet.create({
   header: {
     marginTop: 100,
+    marginBottom: 30,
     font: FONT.bold,
     fontSize: 60,
     color: "#3a2311",
@@ -13,7 +14,8 @@ const styles = StyleSheet.create({
   optionBtn: {
     backgroundColor: "#6a885e",
     paddingHorizontal: 20,
-    marginTop: 40,
+    marginTop: 20,
+    paddingVertical: 10,
     borderRadius: 30,
     flexDirection: "row",
     display: "flex",
@@ -79,7 +81,6 @@ const styles = StyleSheet.create({
   },
 
   dropdown: {
-    fontFamily: FONT.regular,
     fontSize: 15,
     marginTop: 20,
     width: "100%",

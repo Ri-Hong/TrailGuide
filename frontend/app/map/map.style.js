@@ -15,16 +15,27 @@ const styles = StyleSheet.create({
   map: {
     marginTop: 30,
     width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height - 200,
+    height: Dimensions.get("window").height - 300,
   },
+
   subtitle: {
-    font: FONT.bold,
     fontWeight: "bold",
     fontSize: 40,
     color: "#55433b",
     marginTop: 50,
     alignItems: "center",
   },
+
+  search: {
+    width: "70%",
+    fontSize: 15,
+    marginTop: 20,
+    backgroundColor: "#eeecda",
+    //height: "0%",
+    paddingHorizontal: 20,
+    borderRadius: 10,
+  },
+
   btnContainer: {
     alignItems: "flex-end",
   },

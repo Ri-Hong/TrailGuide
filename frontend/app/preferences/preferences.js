@@ -1,9 +1,25 @@
-import { View, Text, ScrollView, SafeAreaView, TextInput, Pressable, Switch } from "react-native";
+import { Linking, Text, Button, SafeAreaView, TextInput, Pressable, Switch } from "react-native";
 import { useState } from "react";
 import { Stack, Slot, Link, useRouter } from "expo-router";
 import { Dropdown } from "react-native-element-dropdown";
 
 import styles from "./preferences.style.js";
+
+  const handlePress = () => {
+    // Replace '123456789' with the recipient's phone number
+    const phoneNumber = "2496638092";
+
+    // Replace 'Hello%20world' with your pre-filled message (URL encoded)
+    const message = "Hello world";
+
+    // Create the SMS URI
+    const smsUri = `sms:${phoneNumber}?body=${message}`;
+
+    // Open the SMS application
+    Linking.openURL(smsUri).catch((err) =>
+      console.error("Error opening SMS application:", err)
+    );
+  };
 
 const Preferences = () => {
   //const router = useRouter();
@@ -56,11 +72,9 @@ const Preferences = () => {
         />
       </Pressable>
 
-      <Link href="/preferences/preferences" style={styles.button}>
-        <Pressable>
-          <Text style={styles.next}>Next</Text>
-        </Pressable>
-      </Link>
+      <Pressable title="start" onPress={handlePress} style={styles.button}>
+          <Text style={styles.next}>Start Hiking!</Text>
+      </Pressable>
     </SafeAreaView>
   );
 };
