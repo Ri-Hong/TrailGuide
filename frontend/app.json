@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "scheme": "acme",
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "name": "frontend",
+    "slug": "frontend",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "da25f6a4-dcde-4d6f-b124-85ca2f176cea"
+      }
+    },
+    "android": {
+      "package": "com.andrewuau.frontend",
+      "config": {
+        "googleMaps": {
+          "apiKey": ""
+        }
+      }
+    }
+  }
+}
